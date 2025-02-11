@@ -29,7 +29,7 @@ const Chart = (props) => {
     : [];
 
   const labels = sortedProducts.map((item) => new Date(item.date)); // Keep as Date object
-  const prices = sortedProducts.map((product) => product.price);
+  const prices = sortedProducts.map((product) => product.averagePrice);
 
   const todaysPrice = prices[prices.length - 1];
   const averagePrice = (
@@ -130,12 +130,16 @@ const Chart = (props) => {
         <h1>Trend of Egg Prices</h1>
 
         <h3>
-          Today's Price: $
-          {!todaysPrice ? <span>Loading...</span> : todaysPrice.toFixed(2)}
+          Today's Price:
+          {!todaysPrice ? <span>Loading...</span> : <span>{todaysPrice}</span>}
         </h3>
         <h3>
-          Average Price: $
-          {averagePrice !== Number ? averagePrice : <span>Loading...</span>}
+          Average Price:
+          {!averagePrice ? (
+            <span>Loading...</span>
+          ) : (
+            <span>{averagePrice}</span>
+          )}
         </h3>
         {priceChange > 0 ? (
           <h3 style={{ color: "green" }}>
