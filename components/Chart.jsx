@@ -128,8 +128,15 @@ const Chart = (props) => {
     <>
       <div className="chart-title">
         <h1>Trend of Egg Prices</h1>
-        <h3>Today's Price: ${todaysPrice}</h3>
-        <h3>Average Price: ${averagePrice}</h3>
+
+        <h3>
+          Today's Price: $
+          {!todaysPrice ? <span>Loading...</span> : todaysPrice.toFixed(2)}
+        </h3>
+        <h3>
+          Average Price: $
+          {averagePrice !== Number ? averagePrice : <span>Loading...</span>}
+        </h3>
         {priceChange > 0 ? (
           <h3 style={{ color: "green" }}>
             Price Change: +${priceChange.toFixed(2)}
